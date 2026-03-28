@@ -1,7 +1,7 @@
 // /api/auth/signup, /api/login 호출(로그인/회원가입 API 호출하는 함수)
 import axios from 'axios';
 
-const BASE_URL = 'http://134.185.117.253:8080/api/auth';
+const BASE_URL = 'https://api.vergard.me/api/auth';
 
 export const signup = async (email: string, password: string, nickname: string) => {
     const response = await axios.post(`${BASE_URL}/signup`, {

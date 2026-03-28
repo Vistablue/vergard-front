@@ -1,7 +1,7 @@
 // /api/items/search, /api/items/{id} 호출(검색/상세조회 API 호출하는 함수)
 import axios from 'axios';
 
-const BASE_URL = 'http://134.185.117.253:8080/api/items';
+const BASE_URL = 'https://api.vergard.me/api/items';
 
 export const searchItems = async (keyword: string) => {
     const response = await axios.get(`${BASE_URL}/search?keyword=${keyword}`);
