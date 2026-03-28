@@ -1,0 +1,151 @@
+.ranking-wrapper {
+    min-height: 100vh;
+    background-color: #F9FBEE;
+}
+
+.ranking-content {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+}
+
+/* 헤더 */
+.ranking-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.ranking-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2a3a12;
+    margin-bottom: 8px;
+}
+
+.ranking-sub {
+    font-size: 14px;
+    color: #8a9a6a;
+}
+
+/* 랭킹 리스트 */
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.ranking-item {
+    background: #ffffff;
+    border: 1px solid #e0eab8;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.15s;
+}
+
+.ranking-item:hover {
+    transform: translateX(4px);
+}
+
+.ranking-item.top-three {
+    border-color: #c5d9a0;
+    background: #f8fbf0;
+}
+
+.ranking-item.first {
+    border-color: #e8c840;
+    background: #fffdf0;
+}
+
+/* 왼쪽 */
+.ranking-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ranking-position {
+    font-size: 22px;
+    min-width: 36px;
+    text-align: center;
+    font-weight: 700;
+    color: #8a9a6a;
+}
+
+.ranking-nickname {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2a3a12;
+}
+
+/* 오른쪽 */
+.ranking-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ranking-score {
+    font-size: 18px;
+    font-weight: 700;
+    color: #758C3B;
+}
+
+.ranking-time {
+    font-size: 13px;
+    color: #8a9a6a;
+    background: #f0f5e0;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+/* 빈 상태 */
+.ranking-empty {
+    text-align: center;
+    padding: 60px 0;
+    color: #8a9a6a;
+    font-size: 16px;
+    margin-bottom: 28px;
+}
+
+/* 하단 버튼 */
+.ranking-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.ranking-quiz-btn {
+    background-color: #758C3B;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.ranking-quiz-btn:hover {
+    background-color: #637a30;
+}
+
+.ranking-home-btn {
+    background-color: #ffffff;
+    color: #758C3B;
+    border: 1.5px solid #758C3B;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.ranking-home-btn:hover {
+    background-color: #f0f5e0;
+}

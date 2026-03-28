@@ -1,0 +1,126 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px 0 16px;
+    height: 72px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e8efd6;
+    box-shadow: 0 1px 4px rgba(117, 140, 59, 0.08);
+    gap: 24px;
+}
+
+/* 왼쪽: 로고 + 슬로건 */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.navbar-logo {
+    height: 145px;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.navbar-slogan {
+    font-size: 15px;
+    color: #5a8139;
+    border-left: 1px solid #dde8c0;
+    padding-left: 14px;
+    white-space: nowrap;
+}
+
+
+.navbar-center {
+    display: flex;
+    gap: 15px;
+    /* 기존 6px → 15px (2.5배) */
+    flex: 1;
+    justify-content: center;
+    margin-right: 60px;
+}
+
+.nav-menu-btn {
+    background: #f0f5e0;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #758C3B;
+    padding: 7px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    /* 굵어져도 너비 안 흔들리게 */
+    min-width: fit-content;
+    letter-spacing: 0.01em;
+}
+
+
+.nav-menu-btn:hover {
+    background-color: #ddeab8;
+    font-weight: 700;
+}
+
+.nav-menu-btn.active {
+    background-color: #ddeab8;
+    font-weight: 700;
+}
+
+/* 오른쪽: 구분선 + 버튼들 */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-divider {
+    width: 1px;
+    height: 20px;
+    background-color: #dde8c0;
+    margin: 0 4px;
+}
+
+/* 로그인 - outline */
+.nav-btn-outline {
+    background-color: #ffffff;
+    color: #758C3B;
+    border: 1.5px solid #758C3B;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    min-width: 90px;
+    white-space: nowrap;
+}
+
+.nav-btn-outline:hover {
+    background-color: #f0f5e0;
+    font-weight: 700;
+}
+
+/* 회원가입 - filled */
+.nav-btn-fill {
+    background-color: #758C3B;
+    color: #ffffff;
+    border: 1.5px solid #758C3B;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    min-width: 90px;
+    white-space: nowrap;
+}
+
+.nav-btn-fill:hover {
+    background-color: #637a30;
+    font-weight: 700;
+}

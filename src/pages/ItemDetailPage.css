@@ -1,0 +1,137 @@
+.detail-wrapper {
+    min-height: 100vh;
+    background-color: #F9FBEE;
+}
+
+.detail-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+}
+
+.detail-loading {
+    text-align: center;
+    padding: 80px;
+    color: #8a9a6a;
+    font-size: 16px;
+}
+
+/* 뒤로가기 */
+.back-btn {
+    background: none;
+    border: none;
+    color: #758C3B;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.back-btn:hover {
+    color: #637a30;
+}
+
+/* 헤더 카드 */
+.detail-header-card {
+    border-radius: 16px;
+    padding: 28px 28px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.detail-icon {
+    font-size: 56px;
+    line-height: 1;
+}
+
+.detail-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-category-tag {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.detail-name {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2a3a12;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.detail-recyclable {
+    font-size: 14px;
+    color: #4a4840;
+}
+
+/* 정보 카드 */
+.detail-card {
+    background: #ffffff;
+    border: 1px solid #e0eab8;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 12px;
+}
+
+.detail-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2a3a12;
+    margin-bottom: 14px;
+}
+
+.detail-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f5e0;
+}
+
+.detail-info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.detail-info-label {
+    font-size: 13px;
+    color: #8a9a6a;
+    min-width: 90px;
+    flex-shrink: 0;
+}
+
+.detail-info-value {
+    font-size: 14px;
+    color: #2a3a12;
+    font-weight: 500;
+}
+
+.detail-card-text {
+    font-size: 14px;
+    color: #3a4a20;
+    line-height: 1.7;
+}
+
+/* 지역 안내 카드 */
+.detail-notice-card {
+    background: #FEF9EC;
+    border-color: #f0d898;
+}
+
+.detail-notice-card .detail-card-title {
+    color: #7a4a10;
+}
+
+.detail-notice-card .detail-card-text {
+    color: #7a4a10;
+}

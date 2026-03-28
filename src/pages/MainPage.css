@@ -1,0 +1,181 @@
+.main-wrapper {
+    min-height: 100vh;
+    background-color: #F9FBEE;
+}
+
+/* 히어로 섹션 */
+.hero-section {
+    text-align: center;
+    padding: 80px 24px 60px;
+}
+
+.hero-greeting {
+    font-size: 16px;
+    color: #758C3B;
+    margin-bottom: 12px;
+}
+
+.hero-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #2a3a12;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.hero-sub {
+    font-size: 16px;
+    color: #8a9a6a;
+    margin-bottom: 36px;
+}
+
+.hero-search-bar {
+    display: flex;
+    max-width: 520px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 2px solid #758C3B;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(117, 140, 59, 0.12);
+}
+
+.hero-search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-size: 16px;
+    background: transparent;
+    color: #2a3a12;
+}
+
+.hero-search-input::placeholder {
+    color: #b0bc90;
+}
+
+.hero-search-btn {
+    background-color: #758C3B;
+    color: #ffffff;
+    border: none;
+    padding: 16px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.hero-search-btn:hover {
+    background-color: #637a30;
+}
+
+/* 카테고리 섹션 */
+.category-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2a3a12;
+    margin-bottom: 14px;
+}
+
+/* 대분류 5개 */
+.main-category-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.main-category-card {
+    border: none;
+    border-radius: 12px;
+    padding: 20px 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.15s;
+    text-align: center;
+}
+
+.main-category-card:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* 세부 바로가기 6개 */
+.sub-category-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.sub-category-card {
+    background: #ffffff;
+    border: 1.5px solid #e0eab8;
+    border-radius: 10px;
+    padding: 12px 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #3a5a18;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+    text-align: center;
+}
+
+.sub-category-card:hover {
+    background-color: #f0f5e0;
+    border-color: #758C3B;
+}
+
+/* 퀴즈 배너 */
+.quiz-banner-section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+}
+
+.quiz-banner-inner {
+    background-color: #758C3B;
+    border-radius: 16px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quiz-banner-text {
+    color: #ffffff;
+}
+
+.quiz-banner-sub {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-bottom: 6px;
+}
+
+.quiz-banner-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.quiz-banner-btn {
+    background-color: #ffffff;
+    color: #758C3B;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s;
+}
+
+.quiz-banner-btn:hover {
+    background-color: #f0f5e0;
+}

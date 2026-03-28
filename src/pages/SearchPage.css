@@ -1,0 +1,258 @@
+.search-wrapper {
+    min-height: 100vh;
+    background-color: #F9FBEE;
+}
+
+.search-content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+/* 검색바 */
+.search-bar-wrap {
+    margin-bottom: 32px;
+}
+
+.search-bar {
+    display: flex;
+    background: #ffffff;
+    border: 2px solid #758C3B;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(117, 140, 59, 0.12);
+    margin-bottom: 12px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 14px 20px;
+    font-size: 15px;
+    background: transparent;
+    color: #2a3a12;
+}
+
+.search-input::placeholder {
+    color: #b0bc90;
+}
+
+.search-btn {
+    background-color: #758C3B;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.search-btn:hover {
+    background-color: #637a30;
+}
+
+/* 최근 검색어 */
+.history-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.history-label {
+    font-size: 13px;
+    color: #8a9a6a;
+}
+
+.history-tag {
+    font-size: 13px;
+    background: #ffffff;
+    border: 1px solid #dde8b8;
+    color: #3a5a18;
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.history-tag:hover {
+    background: #f0f5e0;
+}
+
+/* 결과 헤더 */
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.result-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2a3a12;
+}
+
+.result-count {
+    font-size: 14px;
+    color: #8a9a6a;
+    background: #f0f5e0;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+/* 검색 결과 없음 */
+.no-result {
+    text-align: center;
+    padding: 60px 0;
+    color: #8a9a6a;
+}
+
+.no-result p:first-child {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.no-result p:last-child {
+    font-size: 14px;
+}
+
+/* 카드 그리드 */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.item-card {
+    background: #ffffff;
+    border: 1px solid #e0eab8;
+    border-radius: 14px;
+    padding: 20px 14px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(117, 140, 59, 0.12);
+}
+
+.item-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.item-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.item-card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2a3a12;
+}
+
+.item-card-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+/* 내 순위 카드 */
+.my-rank-card {
+    background: #ffffff;
+    border: 2px solid #758C3B;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.my-rank-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #758C3B;
+    background: #EAF3DE;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.my-rank-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.my-rank-position {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2a3a12;
+}
+
+.my-rank-nickname {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2a3a12;
+}
+
+.my-rank-score {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin: 24px 0;
+}
+
+.page-btn {
+    background: #ffffff;
+    border: 1px solid #e0eab8;
+    color: #758C3B;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #f0f5e0;
+}
+
+.page-btn.active {
+    background: #758C3B;
+    color: #ffffff;
+    border-color: #758C3B;
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
