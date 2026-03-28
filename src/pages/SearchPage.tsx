@@ -83,7 +83,7 @@ function SearchPage() {
             });
         }
         loadHistory();
-    }, [searchParams]);
+    }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const loadHistory = async () => {
         if (token) {

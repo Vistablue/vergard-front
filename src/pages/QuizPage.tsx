@@ -45,7 +45,7 @@ function QuizPage() {
             setOptions(makeOptions(data[0]));
             questionStartRef.current = Date.now();
         });
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (quizzes.length === 0 || finished) return;
@@ -71,7 +71,7 @@ function QuizPage() {
         }, 1000);
 
         return () => clearInterval(timerRef.current!);
-    }, [current, quizzes]);
+    }, [current, quizzes]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const makeOptions = (quiz: Quiz) => {
         if (quiz.type === 'ox') return ['O', 'X'];

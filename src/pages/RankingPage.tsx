@@ -32,7 +32,7 @@ function RankingPage() {
         if (token) {
             getMyRank().then(setMyRank).catch(() => { });
         }
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const fetchRanking = async (page: number) => {
         const data = await getRanking(page);
