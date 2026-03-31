@@ -166,12 +166,12 @@
 
     .mobile-nav-menus .nav-menu-btn {
         padding: 6px 8px;
-        font-size: 11px;
+        font-size: 22px;
     }
 
     .mobile-nav-menus .nav-btn-outline {
         padding: 6px 10px;
-        font-size: 11px;
+        font-size: 22px;
         min-width: unset;
         white-space: nowrap;
     }
