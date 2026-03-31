@@ -206,3 +206,14 @@
         padding: 20px;
     }
 }
+
+@media (max-width: 768px) {
+    .main-category-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 5개 → 3열 */
+    }
+
+    .sub-category-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
