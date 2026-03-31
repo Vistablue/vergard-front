@@ -135,7 +135,8 @@
         top: 0;
         z-index: 100;
         padding: 0 16px;
-        height: 100px;
+        height: 80px;
+        overflow-x: hidden;
     }
 
     .navbar-slogan {
@@ -143,7 +144,7 @@
     }
 
     .navbar-logo {
-        height: 160px;
+        height: 100px;
     }
 
     .navbar-center {
