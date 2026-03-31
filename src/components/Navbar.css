@@ -1,128 +1,41 @@
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 32px 0 16px;
-    height: 72px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e8efd6;
-    box-shadow: 0 1px 4px rgba(117, 140, 59, 0.08);
-    gap: 24px;
-}
-
-/* 왼쪽: 로고 + 슬로건 */
-.navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+/* 햄버거 버튼 - 기본 숨김 */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
     flex-shrink: 0;
 }
 
-.navbar-logo {
-    height: 145px;
-    cursor: pointer;
-    object-fit: contain;
-}
-
-.navbar-slogan {
-    font-size: 15px;
-    color: #5a8139;
-    border-left: 1px solid #dde8c0;
-    padding-left: 14px;
-    white-space: nowrap;
-}
-
-
-.navbar-center {
-    display: flex;
-    gap: 15px;
-    /* 기존 6px → 15px (2.5배) */
-    flex: 1;
-    justify-content: center;
-    margin-right: 60px;
-}
-
-.nav-menu-btn {
-    background: #f0f5e0;
-    border: none;
-    font-size: 14px;
-    font-weight: 500;
-    color: #758C3B;
-    padding: 7px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-    /* 굵어져도 너비 안 흔들리게 */
-    min-width: fit-content;
-    letter-spacing: 0.01em;
-}
-
-
-.nav-menu-btn:hover {
-    background-color: #ddeab8;
-    font-weight: 700;
-}
-
-.nav-menu-btn.active {
-    background-color: #ddeab8;
-    font-weight: 700;
-}
-
-/* 오른쪽: 구분선 + 버튼들 */
-.navbar-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.navbar-divider {
-    width: 1px;
-    height: 20px;
-    background-color: #dde8c0;
-    margin: 0 4px;
-}
-
-/* 로그인 - outline */
-.nav-btn-outline {
-    background-color: #ffffff;
-    color: #758C3B;
-    border: 1.5px solid #758C3B;
-    padding: 7px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.15s;
-    min-width: 90px;
-    white-space: nowrap;
-}
-
-.nav-btn-outline:hover {
-    background-color: #f0f5e0;
-    font-weight: 700;
-}
-
-/* 회원가입 - filled */
-.nav-btn-fill {
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
     background-color: #758C3B;
-    color: #ffffff;
-    border: 1.5px solid #758C3B;
-    padding: 7px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.15s;
-    min-width: 90px;
-    white-space: nowrap;
+    border-radius: 2px;
+    transition: all 0.25s ease;
 }
 
-.nav-btn-fill:hover {
-    background-color: #637a30;
-    font-weight: 700;
+/* X 모양 변환 */
+.menu-open .hamburger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-open .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-open .hamburger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* 모바일 드롭다운 - 기본 숨김 */
+.mobile-menu {
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -130,34 +43,76 @@
         padding: 0 16px;
         height: 56px;
         gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: flex-start;
     }
 
     .navbar-slogan {
         display: none;
-        /* 슬로건 숨기기 */
     }
 
     .navbar-logo {
-        height: 36px;
+        height: 44px;
+        /* 기존 36px → 44px로 키움 */
     }
 
     .navbar-center {
         display: none;
-        /* 메뉴 숨기기 */
     }
 
+    /* 데스크탑 오른쪽 버튼들 숨기기 */
     .navbar-right {
-        gap: 6px;
-    }
-
-    .nav-btn-outline,
-    .nav-btn-fill {
-        padding: 6px 10px;
-        font-size: 12px;
-        min-width: unset;
+        display: none;
     }
 
     .navbar-divider {
         display: none;
+    }
+
+    /* 햄버거 버튼 표시 */
+    .hamburger {
+        display: flex;
+        margin-left: auto;
+    }
+
+    /* 드롭다운 메뉴 */
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        background-color: #ffffff;
+        padding: 0 16px;
+    }
+
+    .menu-open .mobile-menu {
+        max-height: 400px;
+        padding: 12px 16px 16px;
+        border-top: 1px solid #e8efd6;
+    }
+
+    .mobile-menu .nav-menu-btn {
+        width: 100%;
+        text-align: left;
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .mobile-menu-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #e8efd6;
+        margin: 4px 0;
+    }
+
+    .mobile-menu .nav-btn-outline,
+    .mobile-menu .nav-btn-fill {
+        width: 100%;
+        text-align: center;
+        min-width: unset;
     }
 }
