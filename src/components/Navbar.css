@@ -137,6 +137,7 @@
         padding: 0 8px;
         height: 80px;
         overflow-x: hidden;
+        justify-content: space-between;
     }
 
     .navbar-slogan {
@@ -161,17 +162,18 @@
 
     .mobile-nav-menus {
         display: flex;
-        gap: 2px;
+        gap: 4px;
         align-items: center;
+        margin-right: 8px;
     }
 
     .mobile-nav-menus .nav-menu-btn {
-        padding: 6px 6px;
+        padding: 6px 8px;
         font-size: 11px;
     }
 
     .mobile-nav-menus .nav-btn-outline {
-        padding: 6px 8px;
+        padding: 6px 6px;
         font-size: 11px;
         min-width: unset;
         white-space: nowrap;
