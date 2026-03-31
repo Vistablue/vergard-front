@@ -68,6 +68,17 @@ function Navbar() {
                     </>
                 )}
             </div>
+            {/* 모바일 전용 메뉴 */}
+            <div className="mobile-nav-menus">
+                <button className={`nav-menu-btn ${isActive('/search') ? 'active' : ''}`} onClick={() => navigate('/search')}>검색</button>
+                <button className={`nav-menu-btn ${isActive('/quiz') ? 'active' : ''}`} onClick={() => navigate('/quiz')}>퀴즈</button>
+                <button className={`nav-menu-btn ${isActive('/ranking') ? 'active' : ''}`} onClick={() => navigate('/ranking')}>랭킹</button>
+                {token ? (
+                    <button className="nav-btn-outline" onClick={handleLogout}>로그아웃</button>
+                ) : (
+                    <button className="nav-btn-outline" onClick={() => navigate('/login')}>로그인</button>
+                )}
+            </div>
         </nav>
     );
 }
