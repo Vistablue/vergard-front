@@ -124,3 +124,40 @@
     background-color: #637a30;
     font-weight: 700;
 }
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 16px;
+        height: 56px;
+        gap: 8px;
+    }
+
+    .navbar-slogan {
+        display: none;
+        /* 슬로건 숨기기 */
+    }
+
+    .navbar-logo {
+        height: 36px;
+    }
+
+    .navbar-center {
+        display: none;
+        /* 메뉴 숨기기 */
+    }
+
+    .navbar-right {
+        gap: 6px;
+    }
+
+    .nav-btn-outline,
+    .nav-btn-fill {
+        padding: 6px 10px;
+        font-size: 12px;
+        min-width: unset;
+    }
+
+    .navbar-divider {
+        display: none;
+    }
+}
