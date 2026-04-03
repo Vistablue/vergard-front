@@ -64,16 +64,20 @@ function LoginPage() {
 
                     {error && <p className="auth-error">{error}</p>}
 
-                    <button className="auth-btn" onClick={handleLogin}>
-                        로그인
-                    </button>
+                    <button className="auth-btn" onClick={handleLogin}>로그인</button>
                 </div>
+
+                {/* 뒤로가기 버그 수정 — navigate(-1) 대신 navigate('/') */}
+                <button
+                    className="auth-back-btn"
+                    onClick={() => navigate('/')}
+                >
+                    ← 메인으로 돌아가기
+                </button>
 
                 <p className="auth-switch">
                     계정이 없으신가요?{' '}
-                    <span className="auth-link" onClick={() => navigate('/signup')}>
-                        회원가입
-                    </span>
+                    <span className="auth-link" onClick={() => navigate('/signup')}>회원가입</span>
                 </p>
             </div>
         </div>

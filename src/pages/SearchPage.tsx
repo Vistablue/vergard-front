@@ -50,6 +50,11 @@ function SearchPage() {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
+    // 검색기록 로드 — 항상 실행
+    useEffect(() => {
+        loadHistory();
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
     useEffect(() => {
         const k = searchParams.get('keyword');
         const cat = searchParams.get('category');
@@ -75,14 +80,13 @@ function SearchPage() {
                 setSearched(true);
             });
         } else {
-            // 파라미터 없으면 전체 품목 불러오기
+            // 파라미터 없으면 전체 품목 — searched는 false 유지해서 검색기록 표시
             setPageTitle('전체 품목');
             getAllItems().then((data) => {
                 setResults(data);
-                setSearched(true);
+                // setSearched(true) 제거 — 전체 품목 화면에서도 검색기록 보여야 함
             });
         }
-        loadHistory();
     }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const loadHistory = async () => {
@@ -104,13 +108,14 @@ function SearchPage() {
             const updated = [keyword, ...local.filter((k: string) => k !== keyword)].slice(0, 5);
             localStorage.setItem('searchHistory', JSON.stringify(updated));
         }
+        // 검색 후 기록 갱신
+        await loadHistory();
         setSearchParams({ keyword });
     };
 
     return (
         <div className="search-wrapper">
             <Navbar />
-
             <div className="search-content">
                 {/* 검색바 */}
                 <div className="search-bar-wrap">
@@ -126,8 +131,8 @@ function SearchPage() {
                         <button className="search-btn" onClick={handleSearch}>검색</button>
                     </div>
 
-                    {/* 최근 검색기록 */}
-                    {!searched && history.length > 0 && (
+                    {/* 최근 검색기록 — searched 조건 제거, 기록 있으면 항상 표시 */}
+                    {history.length > 0 && (
                         <div className="history-wrap">
                             <span className="history-label">최근 검색어</span>
                             {history.map((h, index) => (
@@ -144,50 +149,43 @@ function SearchPage() {
                 </div>
 
                 {/* 결과 영역 */}
-                {searched && (
-                    <>
-                        <div className="result-header">
-                            <h2 className="result-title">{pageTitle}</h2>
-                            <span className="result-count">{results.length}개</span>
-                        </div>
+                <div className="result-header">
+                    <h2 className="result-title">{pageTitle}</h2>
+                    <span className="result-count">{results.length}개</span>
+                </div>
 
-                        {results.length === 0 ? (
-                            <div className="no-result">
-                                <p>검색 결과가 없습니다 😢</p>
-                                <p>다른 키워드로 검색해보세요</p>
-                            </div>
-                        ) : (
-                            <div className="card-grid">
-                                {results.map((item) => {
-                                    const color = CATEGORY_COLORS[item.category] || { bg: '#F1EFE8', text: '#4a4840' };
-                                    const icon = CATEGORY_ICONS[item.category] || '📦';
-                                    return (
-                                        <div
-                                            key={item.id}
-                                            className="item-card"
-                                            onClick={() => navigate(`/items/${item.id}`)}
+                {results.length === 0 && searched ? (
+                    <div className="no-result">
+                        <p>검색 결과가 없습니다 😢</p>
+                        <p>다른 키워드로 검색해보세요</p>
+                    </div>
+                ) : (
+                    <div className="card-grid">
+                        {results.map((item) => {
+                            const color = CATEGORY_COLORS[item.category] || { bg: '#F1EFE8', text: '#4a4840' };
+                            const icon = CATEGORY_ICONS[item.category] || '📦';
+                            return (
+                                <div
+                                    key={item.id}
+                                    className="item-card"
+                                    onClick={() => navigate(`/items/${item.id}`)}
+                                >
+                                    <div className="item-card-icon" style={{ backgroundColor: color.bg }}>
+                                        <span>{icon}</span>
+                                    </div>
+                                    <div className="item-card-body">
+                                        <p className="item-card-name">{item.name}</p>
+                                        <span
+                                            className="item-card-tag"
+                                            style={{ backgroundColor: color.bg, color: color.text }}
                                         >
-                                            <div
-                                                className="item-card-icon"
-                                                style={{ backgroundColor: color.bg }}
-                                            >
-                                                <span>{icon}</span>
-                                            </div>
-                                            <div className="item-card-body">
-                                                <p className="item-card-name">{item.name}</p>
-                                                <span
-                                                    className="item-card-tag"
-                                                    style={{ backgroundColor: color.bg, color: color.text }}
-                                                >
-                                                    {item.category}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        )}
-                    </>
+                                            {item.category}
+                                        </span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 )}
             </div>
         </div>

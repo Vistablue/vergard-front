@@ -81,6 +81,7 @@ function QuizPage() {
 
     const handleSelect = (option: string) => {
         if (selected !== null) return;
+        if (finished) return;
         clearInterval(timerRef.current!);
         const elapsed = Date.now() - questionStartRef.current;
         totalTimeRef.current += elapsed;
@@ -190,9 +191,13 @@ function QuizPage() {
                 <div className={`quiz-options ${quiz.type === 'ox' ? 'ox-options' : ''}`}>
                     {options.map((opt) => {
                         let optClass = 'quiz-option';
-                        if (selected !== null) {
+                        if (selected !== null && selected !== '') {
                             if (opt === quiz.answer) optClass += ' correct';
                             else if (opt === selected) optClass += ' wrong';
+                            else optClass += ' disabled';
+                        } else if (selected === '') {
+                            // 타임오버: 정답만 표시, 선택한 보기 없음
+                            if (opt === quiz.answer) optClass += ' correct';
                             else optClass += ' disabled';
                         }
                         return (
