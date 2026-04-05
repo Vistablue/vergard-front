@@ -47,4 +47,8 @@ export const getAllItems = async () => {
     const response = await axios.get(`${BASE_URL}/all`);
     return response.data;
 };
+export const searchByWasteClass = async (wasteClass: string) => {
+    const response = await axios.get(`${BASE_URL}/wasteClass?wasteClass=${encodeURIComponent(wasteClass)}`);
+    return response.data;
+};
 

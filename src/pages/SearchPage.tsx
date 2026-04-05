@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { searchItems, saveSearchHistory, getSearchHistory, searchByCategory, searchByBinType, getAllItems } from '../api/items';
+import { searchItems, saveSearchHistory, getSearchHistory, searchByCategory, searchByBinType, getAllItems, searchByWasteClass } from '../api/items';
 import Navbar from '../components/Navbar';
 import './SearchPage.css';
 
@@ -12,8 +12,6 @@ interface Item {
     isRecyclable: boolean;
     description: string;
     precautions: string;
-    imageUrl: string;
-    categoryImageUrl: string;
     searchCount: number;
     localNotice: string;
     wasteClass: string;
@@ -35,10 +33,18 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
 const CATEGORY_ICONS: Record<string, string> = {
     '재활용': '♻️',
     '종량제': '🗑️',
-    '음식물쓰레기': '🍚',
+    '음식물쓰레기': '🍎',
     '대형폐기물': '🛋️',
-    '특수수거': '⚗️',
+    '특수수거': '💻',
 };
+
+const WASTE_CLASS_OPTIONS = [
+    '전체 🌏',
+    '플라스틱류🪣', '종이류📚', '종이팩🐮', '일반종량제🗑️', '비닐류🛍️', '스티로폼⬜',
+    '캔류🥫', '유리병🍷', '불연성종량제❌', '폐건전지·배터리류🔋', '형광등🌟',
+    '의류·섬유👗', '음식물쓰레기🍎', '중소형 폐가전🖱️', '대형 폐가전📺',
+    '가구류🛏️', '대형폐기물 배출🛁', '생활계유해폐기물🛢️', '폐의약품💊', '고철류🍳'
+];
 
 function SearchPage() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -47,10 +53,11 @@ function SearchPage() {
     const [searched, setSearched] = useState(false);
     const [history, setHistory] = useState<History[]>([]);
     const [pageTitle, setPageTitle] = useState('');
+    const [sortAsc, setSortAsc] = useState(false);
+    const [selectedWasteClass, setSelectedWasteClass] = useState('전체');
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
-    // 검색기록 로드 — 항상 실행
     useEffect(() => {
         loadHistory();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -59,6 +66,7 @@ function SearchPage() {
         const k = searchParams.get('keyword');
         const cat = searchParams.get('category');
         const binT = searchParams.get('binType');
+        const wc = searchParams.get('wasteClass');
 
         if (k) {
             setKeyword(k);
@@ -79,12 +87,17 @@ function SearchPage() {
                 setResults(data);
                 setSearched(true);
             });
+        } else if (wc) {
+            setPageTitle(`${wc}`);
+            setSelectedWasteClass(wc);
+            searchByWasteClass(wc).then((data) => {
+                setResults(data);
+                setSearched(true);
+            });
         } else {
-            // 파라미터 없으면 전체 품목 — searched는 false 유지해서 검색기록 표시
             setPageTitle('전체 품목');
             getAllItems().then((data) => {
                 setResults(data);
-                // setSearched(true) 제거 — 전체 품목 화면에서도 검색기록 보여야 함
             });
         }
     }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -108,10 +121,23 @@ function SearchPage() {
             const updated = [keyword, ...local.filter((k: string) => k !== keyword)].slice(0, 5);
             localStorage.setItem('searchHistory', JSON.stringify(updated));
         }
-        // 검색 후 기록 갱신
         await loadHistory();
         setSearchParams({ keyword });
     };
+
+    const handleWasteClassFilter = (wc: string) => {
+        setSelectedWasteClass(wc);
+        if (wc === '전체') {
+            setSearchParams({});
+        } else {
+            setSearchParams({ wasteClass: wc });
+        }
+    };
+
+    // 정렬 적용
+    const displayResults = sortAsc
+        ? [...results].sort((a, b) => a.name.localeCompare(b.name, 'ko'))
+        : results;
 
     return (
         <div className="search-wrapper">
@@ -131,10 +157,9 @@ function SearchPage() {
                         <button className="search-btn" onClick={handleSearch}>검색</button>
                     </div>
 
-                    {/* 최근 검색기록 — searched 조건 제거, 기록 있으면 항상 표시 */}
                     {history.length > 0 && (
                         <div className="history-wrap">
-                            <span className="history-label">최근 검색어</span>
+                            <span className="history-label">최근 검색기록</span>
                             {history.map((h, index) => (
                                 <span
                                     key={h.id || index}
@@ -148,20 +173,41 @@ function SearchPage() {
                     )}
                 </div>
 
-                {/* 결과 영역 */}
-                <div className="result-header">
-                    <h2 className="result-title">{pageTitle}</h2>
-                    <span className="result-count">{results.length}개</span>
+                {/* 필터 + 정렬 */}
+                <div className="filter-wrap">
+                    <div className="waste-class-filter">
+                        {WASTE_CLASS_OPTIONS.map((wc) => (
+                            <button
+                                key={wc}
+                                className={`filter-btn ${selectedWasteClass === wc ? 'active' : ''}`}
+                                onClick={() => handleWasteClassFilter(wc)}
+                            >
+                                {wc}
+                            </button>
+                        ))}
+                    </div>
+                    <button
+                        className={`sort-btn ${sortAsc ? 'active' : ''}`}
+                        onClick={() => setSortAsc(!sortAsc)}
+                    >
+                        {sortAsc ? '가나다순 ✓' : '가나다순'}
+                    </button>
                 </div>
 
-                {results.length === 0 && searched ? (
+                {/* 결과 헤더 */}
+                <div className="result-header">
+                    <h2 className="result-title">{pageTitle}</h2>
+                    <span className="result-count">{displayResults.length}개</span>
+                </div>
+
+                {displayResults.length === 0 && searched ? (
                     <div className="no-result">
                         <p>검색 결과가 없습니다 😢</p>
                         <p>다른 키워드로 검색해보세요</p>
                     </div>
                 ) : (
                     <div className="card-grid">
-                        {results.map((item) => {
+                        {displayResults.map((item) => {
                             const color = CATEGORY_COLORS[item.category] || { bg: '#F1EFE8', text: '#4a4840' };
                             const icon = CATEGORY_ICONS[item.category] || '📦';
                             return (

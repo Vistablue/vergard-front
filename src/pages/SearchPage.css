@@ -257,6 +257,61 @@
     cursor: not-allowed;
 }
 
+.filter-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.waste-class-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
+}
+
+.filter-btn {
+    background: #f0f5e0;
+    border: 1px solid #ddeab8;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 13px;
+    color: #758C3B;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    background: #ddeab8;
+}
+
+.filter-btn.active {
+    background: #758C3B;
+    color: #ffffff;
+    border-color: #758C3B;
+}
+
+.sort-btn {
+    background: #f0f5e0;
+    border: 1px solid #ddeab8;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    color: #758C3B;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+}
+
+.sort-btn.active {
+    background: #758C3B;
+    color: #ffffff;
+    border-color: #758C3B;
+}
+
 @media (max-width: 768px) {
     .search-btn {
         white-space: nowrap;
