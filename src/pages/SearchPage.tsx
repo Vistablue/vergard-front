@@ -39,11 +39,27 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 
 const WASTE_CLASS_OPTIONS = [
-    '전체 🌏',
-    '플라스틱류🪣', '종이류📚', '종이팩🐮', '일반종량제🗑️', '비닐류🛍️', '스티로폼⬜',
-    '캔류🥫', '유리병🍷', '불연성종량제❌', '폐건전지·배터리류🔋', '형광등🌟',
-    '의류·섬유👗', '음식물쓰레기🍎', '중소형 폐가전🖱️', '대형 폐가전📺',
-    '가구류🛏️', '대형폐기물 배출🛁', '생활계유해폐기물🛢️', '폐의약품💊', '고철류🍳'
+    { label: '전체 🌏', value: '전체' },
+    { label: '플라스틱류🪣', value: '플라스틱류' },
+    { label: '종이류📚', value: '종이류' },
+    { label: '종이팩🐮', value: '종이팩' },
+    { label: '일반종량제🗑️', value: '일반종량제' },
+    { label: '비닐류🛍️', value: '비닐류' },
+    { label: '스티로폼⬜', value: '스티로폼' },
+    { label: '캔류🥫', value: '캔류' },
+    { label: '유리병🍷', value: '유리병' },
+    { label: '불연성종량제❌', value: '불연성종량제' },
+    { label: '폐건전지·배터리류🔋', value: '폐건전지·배터리류' },
+    { label: '형광등🌟', value: '형광등' },
+    { label: '의류·섬유👗', value: '의류·섬유' },
+    { label: '음식물쓰레기🍎', value: '음식물쓰레기' },
+    { label: '중소형 폐가전🖱️', value: '중소형 폐가전' },
+    { label: '대형 폐가전📺', value: '대형 폐가전' },
+    { label: '가구류🛏️', value: '가구류' },
+    { label: '대형폐기물 배출🛁', value: '대형폐기물 배출' },
+    { label: '생활계유해폐기물🛢️', value: '생활계유해폐기물' },
+    { label: '폐의약품💊', value: '폐의약품' },
+    { label: '고철류🍳', value: '고철류' },
 ];
 
 function SearchPage() {
@@ -53,7 +69,7 @@ function SearchPage() {
     const [searched, setSearched] = useState(false);
     const [history, setHistory] = useState<History[]>([]);
     const [pageTitle, setPageTitle] = useState('');
-    const [sortAsc, setSortAsc] = useState(false);
+    const [sortAsc, setSortAsc] = useState(true);
     const [selectedWasteClass, setSelectedWasteClass] = useState('전체');
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
@@ -178,20 +194,14 @@ function SearchPage() {
                     <div className="waste-class-filter">
                         {WASTE_CLASS_OPTIONS.map((wc) => (
                             <button
-                                key={wc}
-                                className={`filter-btn ${selectedWasteClass === wc ? 'active' : ''}`}
-                                onClick={() => handleWasteClassFilter(wc)}
+                                key={wc.value}
+                                className={`filter-btn ${selectedWasteClass === wc.value ? 'active' : ''}`}
+                                onClick={() => handleWasteClassFilter(wc.value)}
                             >
-                                {wc}
+                                {wc.label}
                             </button>
                         ))}
                     </div>
-                    <button
-                        className={`sort-btn ${sortAsc ? 'active' : ''}`}
-                        onClick={() => setSortAsc(!sortAsc)}
-                    >
-                        {sortAsc ? '가나다순 ✓' : '가나다순'}
-                    </button>
                 </div>
 
                 {/* 결과 헤더 */}
